@@ -37,6 +37,22 @@ class App extends Component {
 		})
 	}
 
+	addEmployee = (inputName, inputSalary) => {
+		this.setState(({data}) => {
+			const index = data[data.length-1].id;
+			const newEmployee = {
+				name: inputName,
+				salary: inputSalary,
+				increase: false,
+				id: index + 1
+			}
+			const newData = [...data, newEmployee];
+			return {
+				data: newData
+			}
+		});
+	}
+
 	render() {
 		return (
 			<div className="app">
