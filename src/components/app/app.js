@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 import AppInfo from '../app-info/app-info';
 import SearchPanel from '../search-panel/search-panel';
@@ -15,9 +16,9 @@ class App extends Component {
 
 		this.state = {
 			data : [
-				{ name: "John C.", salary: 800, increase: true, like: true, id: 1 },
-				{ name: "Alex M.", salary: 3000, increase: false, like: false, id: 2 },
-				{ name: "Carl W.", salary: 5000, increase: false, like: false, id: 3 }
+				{ name: "John C.", salary: 800, increase: true, like: true, id: 1},
+				{ name: "Alex M.", salary: 3000, increase: false, like: false, id: 2},
+				{ name: "Carl W.", salary: 5000, increase: false, like: false, id: uuidv4() }
 			],
 			term: '',
 			filter: ''
@@ -34,13 +35,13 @@ class App extends Component {
 
 	addEmployee = (inputName, inputSalary) => {
 		this.setState(({data}) => {
-			const index = data[data.length-1].id;
+			// const index = data[data.length-1].id;
 			const newEmployee = {
 				name: inputName,
 				salary: inputSalary,
 				increase: false,
 				like: false,
-				id: index + 1
+				id: uuidv4()
 			}
 			const newData = [...data, newEmployee];
 			return {
