@@ -33,6 +33,23 @@ class App extends Component {
 		})
 	}
 
+	onChangeSalary = (id, inputSalary) => {
+		this.setState(({data}) => {
+			return {
+				data: data.filter((item) => {
+					if (item.id === id) {
+						if (inputSalary.includes("$")) {
+							item.salary = inputSalary.slice(0, -1);
+						} else {
+							item.salary = inputSalary;
+						}
+					} 
+					return item;
+				})
+			}
+		});
+	}
+
 	addEmployee = (inputName, inputSalary) => {
 		this.setState(({data}) => {
 			// const index = data[data.length-1].id;
@@ -108,8 +125,9 @@ class App extends Component {
 				<EmployeesList 
 					data={visibleData}
 					onDelete={this.deleteItem}
-					onToggleProp={this.onToggleProp}/>
-				<EmployeesAddForm onAddEmployee={this.addEmployee}/>
+					onToggleProp={this.onToggleProp}
+					onChangeSalary={this.onChangeSalary}/>
+				<EmployeesAddForm onAddEmployee={this.addEmployee} />
 			</div>
 		);
 	}
