@@ -38,11 +38,7 @@ class App extends Component {
 			return {
 				data: data.filter((item) => {
 					if (item.id === id) {
-						if (inputSalary.includes("$")) {
-							item.salary = inputSalary.slice(0, -1);
-						} else {
-							item.salary = inputSalary;
-						}
+						item.salary = inputSalary.replace(/\D+/g, '');
 					} 
 					return item;
 				})
